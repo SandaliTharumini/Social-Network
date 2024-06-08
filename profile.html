@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook-like Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profile-header {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-cover img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .profile-avatar img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            margin: -100px auto 10px auto;
+            display: block;
+        }
+
+        .profile-name {
+            margin-bottom: 10px;
+        }
+
+        .profile-bio {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .profile-details {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-details p {
+            margin: 5px 0;
+        }
+
+        .profile-actions {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .profile-actions button {
+            background-color: #1877f2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .profile-actions button:last-child {
+            margin-right: 0;
+        }
+
+        .profile-description {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .profile-description p {
+            color: #555;
+        }
+
+        .profile-description button {
+            background-color: #1877f2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .profile-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .profile-section h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-cover">
+                <img id="coverPhoto" src="https://burst.shopifycdn.com/content/facebook_cover_photo_desktop_mobile_template.jpg" alt="Cover Photo">
+            </div>
+            <div class="profile-avatar">
+                <img id="profilePicture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT16eO5W8VPjVFrkvG8n_2FQKjByMcbLtBF4A&s" alt="Profile Picture">
+            </div>
+            <h1 class="profile-name" id="profileName">John Doe</h1>
+            <p class="profile-bio" id="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="profile-actions">
+                <button onclick="window.location.href='edit-profile.html'">Edit Profile</button>
+                <button>Logout</button>
+            </div>
+        </div>
+        <div class="profile-description">
+            <p id="description">This is a sample description about John Doe. You can edit this description by clicking the button below.</p>
+            <button onclick="window.location.href='edit-description.html'">Edit Description</button>
+        </div>
+        <div class="profile-content">
+            <div class="profile-section">
+                <h2>Posts</h2>
+                <p>No posts yet.</p>
+            </div>
+            <div class="profile-section">
+                <h2>Photos</h2>
+                <p>No photos yet.</p>
+            </div>
+            <div class="profile-section">
+                <h2>Friends</h2>
+                <p>No friends yet.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve and update profile details from local storage
+            const profileName = localStorage.getItem('profileName');
+            const bio = localStorage.getItem('bio');
+            const description = localStorage.getItem('description');
+            const profilePicture = localStorage.getItem('profilePicture');
+            const coverPhoto = localStorage.getItem('coverPhoto');
+
+            if (profileName) document.getElementById('profileName').textContent = profileName;
+            if (bio) document.getElementById('bio').textContent = bio;
+            if (description) document.getElementById('description').textContent = description;
+            if (profilePicture) document.getElementById('profilePicture').src = profilePicture;
+            if (coverPhoto) document.getElementById('coverPhoto').src = coverPhoto;
+        });
+    </script>
+</body>
+</html>

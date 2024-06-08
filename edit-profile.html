@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="file"] {
+            padding: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .form-actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #1877f2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .message {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Profile</h2>
+        <form id="editProfileForm">
+            <div class="form-group">
+                <label for="profilePicture">Profile Picture</label>
+                <input type="file" id="profilePictureInput" name="profilePicture">
+            </div>
+            <div class="form-group">
+                <label for="coverPhoto">Cover Photo</label>
+                <input type="file" id="coverPhotoInput" name="coverPhoto">
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea id="bioInput" name="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+            </div>
+            <div class="form-actions">
+                <button type="submit">Save Changes</button>
+            </div>
+        </form>
+        <div class="message" id="message">Profile updated successfully!</div>
+    </div>
+    <script>
+        document.getElementById('editProfileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const profileName = document.getElementById('profileNameInput').value;
+            const bio = document.getElementById('bioInput').value;
+            const profilePicture = document.getElementById('profilePictureInput').files[0];
+            const coverPhoto = document.getElementById('coverPhotoInput').files[0];
+
+            // Simulate saving the data to the server
+            if (profilePicture) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('profilePicture', e.target.result);
+                }
+                reader.readAsDataURL(profilePicture);
+            }
+
+            if (coverPhoto) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('coverPhoto', e.target.result);
+                }
+                reader.readAsDataURL(coverPhoto);
+            }
+
+            // Save the other data to localStorage
+            localStorage.setItem('profileName', profileName);
+            localStorage.setItem('bio', bio);
+
+            // Show the success message
+            document.getElementById('message').style.display = 'block';
+
+            // Redirect to the profile page after a short delay
+            setTimeout(function() {
+                window.location.href = 'index.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook-like Profile</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <!-- Profile header content -->
+        </div>
+        <div class="profile-description">
+            <p id="description">This is a sample description about John Doe. You can edit this description by clicking the button below.</p>
+            <button id="editDescriptionButton">Edit Description</button>
+        </div>
+        <div class="profile-content">
+            <!-- Profile content sections -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve and update profile details from local storage
+            const profileName = localStorage.getItem('profileName');
+            const bio = localStorage.getItem('bio');
+            const description = localStorage.getItem('description');
+            const profilePicture = localStorage.getItem('profilePicture');
+            const coverPhoto = localStorage.getItem('coverPhoto');
+
+            if (profileName) document.getElementById('profileName').textContent = profileName;
+            if (bio) document.getElementById('bio').textContent = bio;
+            if (description) document.getElementById('description').textContent = description;
+            if (profilePicture) document.getElementById('profilePicture').src = profilePicture;
+            if (coverPhoto) document.getElementById('coverPhoto').src = coverPhoto;
+
+            // Handle edit description button click
+            document.getElementById('editDescriptionButton').addEventListener('click', function () {
+                window.location.href = 'edit-description.html';
+            });
+        });
+    </script>
+</body>
+</html>
