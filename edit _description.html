@@ -3,45 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook-like Profile</title>
+    <title>Edit Description - Your Social Network</title>
     <style>
-        /* Your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #1877f2;
+        }
+
+        .edit-description-form h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1877f2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #166fe5;
+        }
     </style>
+    <script>
+        function saveDescription() {
+            const description = document.getElementById('description').value;
+
+            if (description) localStorage.setItem('description', description);
+
+            localStorage.setItem('feedbackMessage', 'Description updated successfully!');
+            window.location.href = 'profile.html';
+        }
+    </script>
 </head>
 <body>
     <div class="container">
-        <div class="profile-header">
-            <!-- Profile header content -->
+        <div class="header">
+            <h1>Edit Description</h1>
         </div>
-        <div class="profile-description">
-            <p id="description">This is a sample description about John Doe. You can edit this description by clicking the button below.</p>
-            <button id="editDescriptionButton">Edit Description</button>
-        </div>
-        <div class="profile-content">
-            <!-- Profile content sections -->
+        <div class="edit-description-form">
+            <h2>Update Your Description</h2>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description">
+            </div>
+            <button type="button" onclick="saveDescription()">Save</button>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Retrieve and update profile details from local storage
-            const profileName = localStorage.getItem('profileName');
-            const bio = localStorage.getItem('bio');
-            const description = localStorage.getItem('description');
-            const profilePicture = localStorage.getItem('profilePicture');
-            const coverPhoto = localStorage.getItem('coverPhoto');
-
-            if (profileName) document.getElementById('profileName').textContent = profileName;
-            if (bio) document.getElementById('bio').textContent = bio;
-            if (description) document.getElementById('description').textContent = description;
-            if (profilePicture) document.getElementById('profilePicture').src = profilePicture;
-            if (coverPhoto) document.getElementById('coverPhoto').src = coverPhoto;
-
-            // Handle edit description button click
-            document.getElementById('editDescriptionButton').addEventListener('click', function () {
-                window.location.href = 'edit-description.html';
-            });
-        });
-    </script>
 </body>
 </html>
+
