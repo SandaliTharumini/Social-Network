@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook-like Profile</title>
+    <title>Profile - Your Social Network</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,146 +12,196 @@
             background-color: #f0f2f5;
         }
 
+        .header {
+            background-color: #1877f2;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+        }
+
+        .header .user-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .user-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .header .user-menu span {
+            font-size: 16px;
+        }
+
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
             padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px 0;
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 20px;
         }
 
         .profile-header {
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
         .profile-cover img {
-            width: 100%;
-            height: 200px;
+            width: 1000px;
+            height: 250px;
             object-fit: cover;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
+            border-radius: 8px 8px 0 0;
         }
 
         .profile-avatar img {
-            width: 200px;
-            height: 200px;
+            width: 150px; /* Increased size */
+            height: 150px; /* Increased size */
             border-radius: 50%;
-            border: 5px solid #fff;
-            margin: -100px auto 10px auto;
-            display: block;
+            margin-top: -75px; /* Adjusted to center on cover photo */
+            border: 3px solid #fff;
         }
 
         .profile-name {
-            margin-bottom: 10px;
+            font-size: 24px;
+            margin: 10px 0;
         }
 
         .profile-bio {
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .profile-details {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .profile-details p {
-            margin: 5px 0;
-        }
-
-        .profile-actions {
-            margin-bottom: 20px;
-            text-align: center;
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
         }
 
         .profile-actions button {
+            margin: 5px;
+            padding: 10px 20px;
             background-color: #1877f2;
-            color: #fff;
+            color: white;
             border: none;
             border-radius: 5px;
-            padding: 10px 20px;
-            margin-right: 10px;
             cursor: pointer;
         }
 
-        .profile-actions button:last-child {
-            margin-right: 0;
+        .profile-actions button:hover {
+            background-color: #166fe5;
         }
 
         .profile-description {
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            text-align: center;
         }
 
         .profile-description p {
-            color: #555;
+            margin-bottom: 10px;
         }
 
-        .profile-description button {
-            background-color: #1877f2;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        .profile-content {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .profile-section {
+        .profile-content .profile-section {
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .profile-section h2 {
-            margin-top: 0;
+        .profile-content .profile-section h2 {
+            margin: 0 0 10px;
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <div class="logo">Your Social Network</div>
+        <input type="text" placeholder="Search">
+        <div class="user-menu">
+            <img src="user.jpg" alt="User Image">
+            <span>Your Name</span>
+        </div>
+    </div>
     <div class="container">
-        <div class="profile-header">
-            <div class="profile-cover">
-                <img id="coverPhoto" src="https://burst.shopifycdn.com/content/facebook_cover_photo_desktop_mobile_template.jpg" alt="Cover Photo">
-            </div>
-            <div class="profile-avatar">
-                <img id="profilePicture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT16eO5W8VPjVFrkvG8n_2FQKjByMcbLtBF4A&s" alt="Profile Picture">
-            </div>
-            <h1 class="profile-name" id="profileName">John Doe</h1>
-            <p class="profile-bio" id="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <div class="profile-actions">
-                <button onclick="window.location.href='edit-profile.html'">Edit Profile</button>
-                <button>Logout</button>
-            </div>
+        <div class="sidebar">
+            <a href="newsfeed.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="friends.html">Friends</a>
+            <a href="messages.html">Messages</a>
+            <a href="notifications.html">Notifications</a>
+            <a href="settings.html">Settings</a>
+            <a href="logout.html">Logout</a>
         </div>
-        <div class="profile-description">
-            <p id="description">This is a sample description about John Doe. You can edit this description by clicking the button below.</p>
-            <button onclick="window.location.href='edit-description.html'">Edit Description</button>
-        </div>
-        <div class="profile-content">
-            <div class="profile-section">
-                <h2>Posts</h2>
-                <p>No posts yet.</p>
+        <div class="main-content">
+            <div class="profile-header">
+                <div class="profile-cover">
+                    <img id="coverPhoto" src="https://burst.shopifycdn.com/content/facebook_cover_photo_desktop_mobile_template.jpg" alt="Cover Photo">
+                </div>
+                <div class="profile-avatar">
+                    <img id="profilePicture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT16eO5W8VPjVFrkvG8n_2FQKjByMcbLtBF4A&s" alt="Profile Picture">
+                </div>
+                <h1 class="profile-name" id="profileName">John Doe</h1>
+                <p class="profile-bio" id="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="profile-actions">
+                    <button onclick="window.location.href='edit-profile.html'">Edit Profile</button>
+                    <button>Logout</button>
+                </div>
             </div>
-            <div class="profile-section">
-                <h2>Photos</h2>
-                <p>No photos yet.</p>
+            <div class="profile-description">
+                <p id="description">This is a sample description about John Doe. You can edit this description by clicking the button below.</p>
+                <button onclick="window.location.href='edit-description.html'">Edit Description</button>
             </div>
-            <div class="profile-section">
-                <h2>Friends</h2>
-                <p>No friends yet.</p>
+            <div class="profile-content">
+                <div class="profile-section">
+                    <h2>Posts</h2>
+                    <p>No posts yet.</p>
+                </div>
+                <div class="profile-section">
+                    <h2>Photos</h2>
+                    <p>No photos yet.</p>
+                </div>
+                <div class="profile-section">
+                    <h2>Friends</h2>
+                    <p>No friends yet.</p>
+                </div>
             </div>
         </div>
     </div>
