@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Your Social Network</title>
+    <style>
+        /* Common styles for all modes */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .header {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .header input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+        }
+        .header .user-menu {
+            display: flex;
+            align-items: center;
+        }
+        .header .user-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .container {
+            display: flex;
+            margin-top: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .sidebar {
+            width: 250px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px 0;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .main-content {
+            flex: 1;
+            margin-left: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .section label {
+            display: block;
+            margin-top: 10px;
+        }
+        .section label span {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section label input,
+        .section label select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .section button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="header" id="header">
+        <div class="logo">Your Social Network</div>
+        <input type="text" placeholder="Search">
+        <div class="user-menu">
+            <img src="user.jpg" alt="User Image">
+            <span>Your Name</span>
+        </div>
+    </div>
+    <div class="container" id="container">
+        <div class="sidebar" id="sidebar">
+            <a href="index.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="friends.html">Friends</a>
+            <a href="messages.html">Messages</a>
+            <a href="notifications.html">Notifications</a>
+            <a href="settings.html">Settings</a>
+            <a href="logout.html">Logout</a>
+        </div>
+        <div class="main-content" id="main-content">
+            <h2>Settings</h2>
+
+            <div class="section">
+                <h3>General Settings</h3>
+                <label>
+                    <span>Display Name</span>
+                    <input type="text">
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input type="email">
+                </label>
+                <label>
+                    <span>Language</span>
+                    <select>
+                        <option>English</option>
+                        <option>Spanish</option>
+                        <option>French</option>
+                        <option>German</option>
+                        <!-- Add more languages as needed -->
+                    </select>
+                </label>
+            </div>
+
+            <div class="section">
+                <h3>Privacy Settings</h3>
+                <label>
+                    <span>Profile Visibility</span>
+                    <select>
+                        <option>Public</option>
+                        <option>Friends only</option>
+                        <option>Private</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Activity Status</span>
+                    <select>
+                        <option>Show when you're active</option>
+                        <option>Hide activity status</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="section">
+                <h3>Appearance Settings</h3>
+                <label>
+                    <span>Theme</span>
+                    <select id="theme-select">
+                        <option value="light">Light Mode</option>
+                        <option value="dark">Dark Mode</option>
+                        <option value="colorblind">Color Blind Mode</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="section">
+                <h3>Account Settings</h3>
+                <label>
+                    <span>Change Password</span>
+                    <input type="password" placeholder="Current Password">
+                    <input type="password" placeholder="New Password" style="margin-top: 10px;">
+                    <input type="password" placeholder="Confirm New Password" style="margin-top: 10px;">
+                </label>
+                <label>
+                    <span>Two-Factor Authentication</span>
+                    <select>
+                        <option>Enabled</option>
+                        <option>Disabled</option>
+                    </select>
+                </label>
+                <button>Save Changes</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('theme-select').addEventListener('change', function() {
+            const theme = this.value;
+            const body = document.getElementById('body');
+            const header = document.getElementById('header');
+            const container = document.getElementById('container');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarLinks = sidebar.getElementsByTagName('a');
+            const mainContent = document.getElementById('main-content');
+
+            switch (theme) {
+                case 'dark':
+                    body.style.backgroundColor = '#18191a';
+                    body.style.color = '#e4e6eb';
+                    header.style.backgroundColor = '#242526';
+                    header.style.color = '#e4e6eb';
+                    container.style.backgroundColor = '#18191a';
+                    sidebar.style.backgroundColor = '#242526';
+                    sidebar.style.color = '#e4e6eb';
+                    mainContent.style.backgroundColor = '#242526';
+                    mainContent.style.color = '#e4e6eb';
+                    for (let link of sidebarLinks) {
+                        link.style.color = '#e4e6eb';
+                    }
+                    break;
+                case 'light':
+                    body.style.backgroundColor = '#f0f2f5';
+                    body.style.color = '#000';
+                    header.style.backgroundColor = '#1877f2';
+                    header.style.color = '#fff';
+                    container.style.backgroundColor = '#f0f2f5';
+                    sidebar.style.backgroundColor = '#fff';
+                    sidebar.style.color = '#1877f2';
+                    mainContent.style.backgroundColor = '#fff';
+                    mainContent.style.color = '#000';
+                    for (let link of sidebarLinks) {
+                        link.style.color = '#1877f2';
+                    }
+                    break;
+                case 'colorblind':
+                    body.style.backgroundColor = '#dfe6e9';
+                    body.style.color = '#000';
+                    header.style.backgroundColor = '#b2bec3';
+                    header.style.color = '#000';
+                    container.style.backgroundColor = '#dfe6e9';
+                    sidebar.style.backgroundColor = '#b2bec3';
+                    sidebar.style.color = '#000';
+                    mainContent.style.backgroundColor = '#b2bec3';
+                    mainContent.style.color = '#000';
+                    for (let link of sidebarLinks) {
+                        link.style.color = '#000';
+                    }
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
